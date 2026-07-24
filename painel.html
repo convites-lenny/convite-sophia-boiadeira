@@ -1,287 +1,627 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+<head><base href="https://d16ilfvy4mv02r.cloudfront.net/workspaces/KGAnrEVrphM9BCqhuTVjokJvCU9ZIlOe/29760dc7-4d6f-4ddf-99b2-a294d9f231ba/files/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Painel dos Pais | Aniversário Sophia Emanuelly</title>
-<meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Playfair+Display:ital,wght@0,600;1,600&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Painel da Festa da Sophia 🤠</title>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --leather:#8a5a3b; --leather-dark:#5e3a22; --cream:#f7ecd9; --cream2:#fffaf0;
-    --gold:#c99a4a; --gold-light:#e8c27a; --ink:#3c2a1e; --rose:#c1666b; --green:#5b8a44;
-  }
+  :root{--leather:#8a5a3b;--leather-dark:#5e3a22;--cream:#f7ecd9;--cream2:#fff8ec;--gold:#c99a4a;--gold-light:#e8c27a;--ink:#3c2a1e;--rose:#c1666b;--green:#5b8a44;}
   *{box-sizing:border-box;}
-  body{
-    margin:0;font-family:'Josefin Sans',sans-serif;color:var(--ink);
-    background:linear-gradient(180deg,#f1e3c4,#f7ecd9 200px, #fdf7ea 100%);
-    min-height:100vh;
-  }
-  header{
-    background:linear-gradient(160deg,#c99a4a,#8a5a3b 55%,#4a2e1a);
-    color:#fffaf0;text-align:center;padding:34px 20px 26px;
-    box-shadow:0 6px 18px rgba(0,0,0,.25);
-  }
-  header h1{font-family:'Rye',serif;margin:0;font-size:clamp(22px,5vw,30px);letter-spacing:1px;}
-  header p{margin:6px 0 0;font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-light);}
-  .wrap{max-width:920px;margin:-18px auto 40px;padding:0 16px;position:relative;z-index:2;}
+  body{margin:0;font-family:'Josefin Sans',sans-serif;background:radial-gradient(ellipse at top,#3a2a1c,#1b120a 70%);
+    color:var(--ink);min-height:100vh;animation:fadeInBody .6s ease-out;}
+  @keyframes fadeInBody{from{opacity:0;}to{opacity:1;}}
+  .wrap{max-width:660px;margin:0 auto;padding-bottom:80px;}
 
-  .status-note{
-    text-align:center;font-size:12px;color:#8a7256;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px;
-  }
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;}
-  .dot.off{background:var(--rose);}
+  /* HOME */
+  #homeScreen{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+    background:linear-gradient(180deg,rgba(20,13,8,.3),rgba(15,10,6,.95) 75%),url('assets/foto4.jpeg');
+    background-size:cover;background-position:center;padding:30px 20px 40px;}
+  #homeScreen h1{font-family:'Rye',serif;color:var(--gold-light);text-align:center;font-size:24px;
+    text-shadow:0 3px 10px rgba(0,0,0,.6);margin-bottom:24px;animation:slideInTitle .6s ease-out;}
+  @keyframes slideInTitle{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;animation:fadeInMenu .8s ease-out .2s both;}
+  @keyframes fadeInMenu{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .menu-btn{background:rgba(255,248,236,.95);border:none;border-radius:14px;padding:18px 10px;text-align:center;
+    font-weight:700;font-size:13.5px;color:var(--leather-dark);cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.4);
+    transition:all .2s;}
+  .menu-btn:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.5);}
+  .menu-btn .emo{display:block;font-size:28px;margin-bottom:8px;}
 
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:22px;}
-  .stat-card{
-    background:#fff;border-radius:14px;padding:18px 12px;text-align:center;
-    box-shadow:0 8px 20px rgba(90,60,30,.12);
-  }
-  .stat-card b{display:block;font-family:'Rye',serif;font-size:26px;color:var(--leather-dark);}
-  .stat-card span{font-size:12.5px;color:#8a7256;}
-  .stat-card.yes b{color:var(--green);}
-  .stat-card.no b{color:var(--rose);}
+  /* PAGES */
+  .page{display:none;padding:20px 16px;animation:slideUpPage .4s ease-out;}
+  @keyframes slideUpPage{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .page.active{display:block;}
+  .topbar{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .back-btn{background:var(--gold-light);border:none;border-radius:20px;padding:9px 16px;font-weight:700;cursor:pointer;transition:all .2s;}
+  .back-btn:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.3);}
+  .page-title{font-family:'Rye',serif;color:var(--gold-light);font-size:20px;}
 
-  .panel{
-    background:#fff;border-radius:16px;padding:22px;margin-bottom:20px;
-    box-shadow:0 10px 26px rgba(90,60,30,.12);
-  }
-  .panel h2{
-    font-family:'Rye',serif;color:var(--leather-dark);font-size:19px;margin:0 0 16px;
-    display:flex;align-items:center;gap:8px;
-  }
-  .refresh-btn{
-    float:right;background:var(--gold-light);border:none;border-radius:20px;
-    padding:6px 14px;font-size:12.5px;font-weight:600;cursor:pointer;color:#3c2416;
-  }
+  .box{background:var(--cream2);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 6px 16px rgba(0,0,0,.3);
+    animation:slideUpBox .4s ease-out;}
+  .box:nth-of-type(2){animation-delay:.1s;}
+  .box:nth-of-type(3){animation-delay:.2s;}
+  @keyframes slideUpBox{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .box h3{margin:0 0 12px;color:var(--leather-dark);font-family:'Rye',serif;font-size:16px;text-transform:uppercase;letter-spacing:.5px;}
+  input,textarea,select{width:100%;padding:11px 12px;border-radius:8px;border:1.5px solid #e3d3ba;
+    font-family:inherit;font-size:14px;margin-bottom:10px;background:#fffdf8;transition:all .2s;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold-light);box-shadow:0 0 0 3px rgba(232,194,122,.2);}
+  .btn{border:none;border-radius:20px;padding:12px 18px;font-weight:700;cursor:pointer;font-size:13.5px;transition:all .2s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.3);}
+  .btn-gold{background:linear-gradient(160deg,var(--gold-light),var(--gold));color:#3c2416;}
+  .btn-red{background:var(--rose);color:#fff;}
+  .btn-green{background:var(--green);color:#fff;}
+  .btn-outline{background:transparent;border:1.5px solid var(--leather-dark);color:var(--leather-dark);}
+  .row{display:flex;gap:8px;align-items:center;}
+  .row .btn{flex:1;}
 
-  table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  th{text-align:left;padding:10px 8px;color:#8a7256;border-bottom:2px solid #f1e3c4;font-size:12px;text-transform:uppercase;letter-spacing:.4px;}
-  td{padding:10px 8px;border-bottom:1px solid #f6ecd9;vertical-align:top;}
-  tr:hover td{background:#fffaf0;}
-  .badge{padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700;color:#fff;}
-  .badge.sim{background:var(--green);}
-  .badge.nao{background:var(--rose);}
-  .empty-msg{text-align:center;color:#a58f6c;padding:20px;font-size:13.5px;}
+  .list-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:#fbf3e2;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13.5px;
+    transition:all .2s;}
+  .list-item:hover{background:#f5e7d0;box-shadow:0 4px 10px rgba(0,0,0,.15);}
+  .list-item.available{border-left:4px solid var(--green);}
+  .list-item.taken{border-left:4px solid var(--rose);opacity:.7;}
+  .tag{font-size:11px;padding:4px 9px;border-radius:12px;background:var(--gold-light);color:#3c2416;font-weight:700;}
+  .tag.no{background:var(--rose);color:#fff;}
+  .tag.yes{background:var(--green);color:#fff;}
+  .empty{text-align:center;color:#9a8365;padding:18px;font-size:13px;}
+  .gallery-admin{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+  .gallery-admin img{width:100%;height:110px;object-fit:cover;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.25);
+    position:relative;transition:all .2s;cursor:pointer;}
+  .gallery-admin img:hover{transform:scale(1.05);box-shadow:0 6px 16px rgba(0,0,0,.35);}
+  .gallery-item-wrap{position:relative;}
+  .gallery-delete{position:absolute;top:4px;right:4px;background:rgba(193,102,107,.95);color:#fff;border:none;
+    border-radius:50%;width:28px;height:28px;cursor:pointer;font-weight:700;transition:all .2s;display:none;}
+  .gallery-item-wrap:hover .gallery-delete{display:flex;align-items:center;justify-content:center;}
+  .stat-row{display:flex;gap:10px;margin-bottom:14px;margin-top:0;}
+  .stat{flex:1;background:#fbf3e2;border-radius:12px;padding:14px 8px;text-align:center;transition:all .2s;}
+  .stat:hover{box-shadow:0 4px 12px rgba(0,0,0,.2);}
+  .stat b{display:block;font-family:'Rye',serif;font-size:24px;color:var(--leather-dark);}
+  .stat span{font-size:11px;color:#6b5641;letter-spacing:.3px;}
+  .link-box{background:#fbf3e2;padding:12px;border-radius:8px;font-size:12px;word-break:break-all;margin-bottom:8px;border-left:4px solid var(--gold-light);}
+  
+  /* Upload area */
+  .upload-area{border:2px dashed #d4c4a8;border-radius:12px;padding:20px;text-align:center;
+    background:#fbf3e2;cursor:pointer;transition:all .2s;}
+  .upload-area:hover{border-color:var(--gold-light);background:#fff8ed;box-shadow:0 4px 12px rgba(232,194,122,.2);}
+  .upload-area.drag{border-color:var(--gold-light);background:rgba(232,194,122,.1);}
+  .upload-area p{margin:0 0 8px;color:var(--leather-dark);font-weight:600;}
+  .upload-area span{font-size:12px;color:#6b5641;}
+  
+  .success-msg{background:rgba(127,174,99,.15);border-left:4px solid var(--green);color:var(--green);
+    padding:12px;border-radius:8px;margin-bottom:12px;font-size:13px;display:none;animation:slideDown .3s ease-out;}
+  .success-msg.show{display:block;}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
 
-  .gift-form{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
-  .gift-form input{
-    flex:1;min-width:160px;padding:11px 14px;border-radius:10px;border:1.5px solid #e3d3ba;font-size:14px;
-  }
-  .gift-form button{
-    background:linear-gradient(160deg,var(--gold-light),var(--gold));border:none;border-radius:10px;
-    padding:11px 20px;font-weight:700;color:#3c2416;cursor:pointer;
-  }
-  .gift-row{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    padding:12px;background:#fbf3e2;border-radius:10px;margin-bottom:8px;
-  }
-  .gift-row.taken{opacity:.6;}
-  .gift-row .info b{display:block;font-size:14px;color:var(--leather-dark);}
-  .gift-row .info span{font-size:12px;color:#8a7256;}
-  .gift-row .actions button{
-    border:none;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;margin-left:6px;
-  }
-  .btn-del{background:#eecfcf;color:#a14a4f;}
-  .btn-liberar{background:#dcecd0;color:#4f7a34;}
-
-  .link-box{
-    background:#fbf3e2;border-radius:10px;padding:12px 14px;font-size:13px;color:var(--leather-dark);
-    display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;
-  }
-  .link-box code{word-break:break-all;font-size:12.5px;}
-  .link-box button{border:none;background:var(--gold);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;flex:0 0 auto;}
+  /* Modal */
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.7);
+    align-items:center;justify-content:center;backdrop-filter:blur(2px);}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:var(--cream2);border-radius:16px;padding:24px;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.6);
+    animation:modalSlideIn .3s ease-out;}
+  @keyframes modalSlideIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
+  .modal-title{font-family:'Rye',serif;color:var(--rose);font-size:20px;margin:0 0 12px;text-align:center;}
+  .modal-text{color:var(--leather-dark);margin-bottom:20px;line-height:1.6;text-align:center;}
+  .modal-buttons{display:flex;gap:10px;}
+  .modal-buttons button{flex:1;padding:12px;border-radius:10px;border:none;font-weight:700;cursor:pointer;transition:all .2s;}
+  .modal-cancel{background:#d4c4a8;color:var(--leather-dark);}
+  .modal-cancel:hover{background:#c9b48d;}
+  .modal-confirm{background:var(--rose);color:#fff;}
+  .modal-confirm:hover{background:#a14a4f;}
 </style>
 </head>
 <body>
-<header>
-  <h1>🤠 Painel dos Pais</h1>
-  <p>Aniversário da Sophia Emanuelly · 10 anos · Tema Boiadeira</p>
-</header>
-
 <div class="wrap">
-  <div class="status-note"><span class="dot" id="connDot"></span><span id="connText">Verificando conexão com o convite...</span></div>
 
-  <div class="link-box">
-    <div>🔗 Link do convite para enviar aos convidados:<br><code id="inviteLink">carregando...</code></div>
-    <button onclick="copiarLink()">Copiar link</button>
-  </div>
-
-  <div class="stats">
-    <div class="stat-card"><b id="totalResp">0</b><span>Respostas</span></div>
-    <div class="stat-card yes"><b id="totalSim">0</b><span>Confirmados</span></div>
-    <div class="stat-card no"><b id="totalNao">0</b><span>Não vão</span></div>
-    <div class="stat-card"><b id="totalPessoas">0</b><span>Total de pessoas</span></div>
-  </div>
-
-  <div class="panel">
-    <h2>📋 Confirmações de Presença <button class="refresh-btn" onclick="loadAll()">🔄 Atualizar</button></h2>
-    <div style="text-align:center;font-size:12px;color:#a58f6c;margin-top:-6px;margin-bottom:18px;">Atualiza automaticamente a cada 10 segundos</div>
-    <div style="overflow-x:auto;">
-      <table id="confirmTable">
-        <thead>
-          <tr><th>Nome</th><th>Status</th><th>Pessoas</th><th>Mensagem</th><th>Data</th></tr>
-        </thead>
-        <tbody id="confirmBody"></tbody>
-      </table>
+  <!-- HOME -->
+  <div id="homeScreen">
+    <h1>Bem-vindos ao Painel<br>da Festa da Sophia 🤠</h1>
+    <div class="menu-grid">
+      <button class="menu-btn" onclick="goTo('page-info')"><span class="emo">🏇</span>Editar informações</button>
+      <button class="menu-btn" onclick="goTo('page-gallery')"><span class="emo">📷</span>Galeria de Fotos</button>
+      <button class="menu-btn" onclick="goTo('page-music')"><span class="emo">🎵</span>Música do Convite</button>
+      <button class="menu-btn" onclick="goTo('page-guests')"><span class="emo">👨‍👩‍👧</span>Convidados</button>
+      <button class="menu-btn" onclick="goTo('page-confirmed')"><span class="emo">✅</span>Quem confirmou</button>
+      <button class="menu-btn" onclick="goTo('page-notgoing')"><span class="emo">❌</span>Quem não vai</button>
+      <button class="menu-btn" onclick="goTo('page-tamanhos')"><span class="emo">👕</span>Tamanhos Vestuário</span></button>
+      <button class="menu-btn" onclick="goTo('page-share')"><span class="emo">📲</span>Compartilhar convite</button>
+      <button class="menu-btn" onclick="goTo('page-admin')"><span class="emo">⚙️</span>Admin & Resetar</button>
     </div>
-    <div class="empty-msg" id="confirmEmpty" style="display:none;">Nenhuma confirmação recebida ainda.</div>
   </div>
 
-  <div class="panel">
-    <h2>🎁 Lista de Presentes</h2>
-    <p style="color:#8a7256;font-size:13px;margin-top:-8px;">Adicione aqui os itens da lista de presentes. Assim que salvar, aparece automaticamente no convite dos convidados.</p>
-    <div class="gift-form">
-      <input type="text" id="giftNome" placeholder="Nome do presente (ex: Boneca cavalinho)">
-      <input type="text" id="giftLink" placeholder="Link do produto (opcional)">
-      <button onclick="addGift()">+ Adicionar</button>
+  <!-- INFO -->
+  <div class="page" id="page-info">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">🏇 Informações da Festa</span></div>
+    <div class="box">
+      <h3>Dados do evento</h3>
+      <label>Nome da aniversariante</label><input id="infoNome" type="text">
+      <label>Data (AAAA-MM-DD)</label><input id="infoData" type="date">
+      <label>Horário</label><input id="infoHora" type="time">
+      <label>Local</label><input id="infoLocal" type="text">
+      <label>Tema</label><input id="infoTema" type="text">
+      <label>Link do Google Maps</label><input id="infoMaps" type="text">
+      <label>Idade</label><input id="infoIdade" type="number">
+      <button class="btn btn-gold" onclick="salvarInfo()">💾 Salvar informações</button>
     </div>
-    <div id="giftListPanel"></div>
-    <div class="empty-msg" id="giftEmpty" style="display:none;">Nenhum item na lista ainda.</div>
+  </div>
+
+  <!-- GALERIA -->
+  <div class="page" id="page-gallery">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">📷 Galeria de Fotos</span></div>
+    <div class="box">
+      <h3>Adicionar fotos</h3>
+      <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+        <p>📸 Clique para selecionar ou arraste fotos aqui</p>
+        <span>Formatos: JPG, PNG, GIF | Tamanho máx: 5MB</span>
+        <input type="file" id="fileInput" multiple accept="image/*" style="display:none;" onchange="uploadFotos()">
+      </div>
+      <div class="success-msg" id="uploadSuccess">✅ Foto adicionada com sucesso!</div>
+    </div>
+    <div class="box">
+      <h3 id="galeryTitle">Fotos Atuais (0)</h3>
+      <div class="gallery-admin" id="galleryGrid"></div>
+      <p class="empty" id="galeryEmpty">Nenhuma foto adicionada ainda.</p>
+    </div>
+  </div>
+
+  <!-- MÚSICA -->
+  <div class="page" id="page-music">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">🎵 Música do Convite</span></div>
+    <div class="box">
+      <h3>Escolha a música de fundo</h3>
+      <p style="font-size:12px;color:#6b5641;margin-bottom:12px;">A música toca automaticamente quando o convite é aberto.</p>
+      <div class="upload-area" id="musicUploadArea" onclick="document.getElementById('musicInput').click()">
+        <p>🎶 Clique para selecionar ou arraste um arquivo de áudio</p>
+        <span>Formatos: MP3, WAV, OGG | Tamanho máx: 15MB</span>
+        <input type="file" id="musicInput" accept="audio/*" style="display:none;" onchange="uploadMusica()">
+      </div>
+      <div class="success-msg" id="musicSuccess">✅ Música adicionada com sucesso!</div>
+    </div>
+    <div class="box">
+      <h3>Música Atual</h3>
+      <div id="musicCurrent" class="link-box">Nenhuma música configurada</div>
+      <button class="btn btn-red" onclick="removerMusica()">🗑️ Remover música</button>
+    </div>
+  </div>
+
+  <!-- TAMANHOS -->
+  <div class="page" id="page-tamanhos">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">👕 Tamanhos da Sophia</span></div>
+    <div class="box">
+      <h3>⚙️ Tamanhos da Sophia (para o convite)</h3>
+      <p style="font-size:12px;color:#6b5641;margin-bottom:14px;">Estes tamanhos aparecem no convite quando os convidados clicam em 🎁 Tamanhos da Sophia.</p>
+      <label>👕 Blusa / Camiseta</label><input id="tBlusa" type="text" placeholder="ex: G, 38, PP...">
+      <label>👖 Calça / Short</label><input id="tCalca" type="text" placeholder="ex: 38, P, 36...">
+      <label>👗 Vestido</label><input id="tVestido" type="text" placeholder="ex: M, 38...">
+      <label>👡 Sandália</label><input id="tSandalia" type="text" placeholder="ex: 35, 36...">
+      <label>👟 Tênis</label><input id="tTenis" type="text" placeholder="ex: 35, 36...">
+      <label>🤠 Chapéu</label><input id="tChapeu" type="text" placeholder="ex: M, único...">
+      <label>📝 Observações</label><textarea id="tObs" rows="2" placeholder="Ex: prefere cores claras, evitar sintético..."></textarea>
+      <button class="btn btn-gold" onclick="salvarTamanhosSophia()">💾 Salvar Tamanhos</button>
+      <div class="success-msg" id="tamanhosSuccess">✅ Tamanhos salvos! Já aparecem no convite.</div>
+    </div>
+    <div class="box">
+      <h3>👥 Convidados com Tamanhos Informados</h3>
+      <div id="tamanhosList" class="empty">Carregando...</div>
+    </div>
+  </div>
+
+  <!-- GUESTS -->
+  <div class="page" id="page-guests">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">👨‍👩‍👧 Convidados</span></div>
+    <div class="box">
+      <div class="stat-row">
+        <div class="stat"><b id="statTotal">0</b><span>Convidados</span></div>
+        <div class="stat"><b id="statConfirmed">0</b><span>Confirmados</span></div>
+        <div class="stat"><b id="statNot">0</b><span>Não vão</span></div>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Lista de Convidados</h3>
+      <div id="guestsList" class="empty">Carregando...</div>
+    </div>
+  </div>
+
+  <!-- CONFIRMADOS -->
+  <div class="page" id="page-confirmed">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">✅ Quem Confirmou</span></div>
+    <div class="box">
+      <h3>Convidados que Confirmaram Presença</h3>
+      <div id="confirmedList" class="empty">Carregando...</div>
+    </div>
+  </div>
+
+  <!-- NÃO VÃO -->
+  <div class="page" id="page-notgoing">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">❌ Quem Não Vai</span></div>
+    <div class="box">
+      <h3>Convidados que não podem vir</h3>
+      <div id="notgoingList" class="empty">Carregando...</div>
+    </div>
+  </div>
+
+  <!-- COMPARTILHAR -->
+  <div class="page" id="page-share">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">📲 Compartilhar Convite</span></div>
+    <div class="box">
+      <h3>🔗 Link do Convite</h3>
+      <div class="link-box" id="linkConvite">https://convites-lenny.github.io/sophia/</div>
+      <div class="row">
+        <button class="btn btn-gold" onclick="copiarLink()">📋 Copiar link</button>
+        <button class="btn btn-green" onclick="compartilharWhatsApp()">💬 WhatsApp</button>
+      </div>
+    </div>
+    <div class="box">
+      <h3>👁️ Pré-visualização do Link</h3>
+      <p style="font-size:12px;color:#6b5641;margin-bottom:12px;">Assim aparece quando você compartilha no WhatsApp / redes sociais:</p>
+      <div style="border-radius:12px;overflow:hidden;border:1.5px solid #e3d3ba;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.12);">
+        <img src="assets/capa.png" alt="Preview" style="width:100%;height:180px;object-fit:cover;display:block;">
+        <div style="padding:12px 14px;">
+          <div style="font-size:10px;color:#999;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">convites-lenny.github.io</div>
+          <div style="font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Aniversário da Sophia - 10 Anos 🤠</div>
+          <div style="font-size:12px;color:#555;line-height:1.4;">Venha comemorar comigo! 04/10/2026 às 14h - Tema Boiadeira 🤠</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN & RESETAR -->
+  <div class="page" id="page-admin">
+    <div class="topbar"><button class="back-btn" onclick="goHome()">◀ voltar</button><span class="page-title">⚙️ Admin & Resetar</span></div>
+    
+    <div class="box">
+      <h3>🗑️ Resetar Convidados Testes</h3>
+      <p style="font-size:13px;color:#6b5641;margin-bottom:16px;">
+        Limpar todos os convidados registrados (confirmações). 
+        Esta ação não pode ser desfeita!
+      </p>
+      <button class="btn btn-red" onclick="confirmarZerarConvidados()">
+        🗑️ Zerar Todos os Convidados
+      </button>
+    </div>
+
+    <div class="box">
+      <h3>📊 Informações do Banco de Dados</h3>
+      <div style="font-size:13px;color:#6b5641;line-height:1.8;">
+        <p><strong>Status:</strong> <span id="dbStatus">Conectado ✅</span></p>
+        <p><strong>Evento:</strong> sophia10anos</p>
+        <p><strong>Banco:</strong> Firebase Realtime Database</p>
+      </div>
+      <button class="btn btn-gold" onclick="recarregarDadosAdmin()">🔄 Recarregar dados</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <div class="modal-title">⚠️ Confirmação Crítica</div>
+    <div class="modal-text" id="modalText">Tem certeza que deseja zerar todos os convidados? Esta ação não pode ser desfeita!</div>
+    <div class="modal-buttons">
+      <button class="modal-cancel" onclick="cancelarZerar()">❌ Cancelar</button>
+      <button class="modal-confirm" onclick="executarZerarConvidados()">🗑️ Sim, zerar tudo</button>
+    </div>
   </div>
 </div>
 
 <script>
-const BIN_ID = "cbeedee";
-const API_BASE = "https://extendsclass.com/api/json-storage/bin/" + BIN_ID;
+/* ================== FIREBASE ================== */
+const DB_URL = "https://convites-lenny-default-rtdb.firebaseio.com";
+const EVENTO = "sophia10anos";
 
-/* Corrige o bug do CDN cacheando respostas antigas por até 2h */
-function apiUrl(){
-  return API_BASE + "?nocache=" + Date.now() + Math.random().toString(36).slice(2);
-}
-
-document.getElementById('inviteLink').textContent = location.href.replace(/painel\.html.*$/, 'index.html');
-function copiarLink(){
-  const link = document.getElementById('inviteLink').textContent;
-  navigator.clipboard.writeText(link).then(()=>{
-    alert('Link copiado! Agora é só colar no WhatsApp/grupo — o convite mostra uma prévia bonita, não um link seco.');
-  }).catch(()=>{
-    prompt('Copie o link abaixo:', link);
-  });
-}
-
-function setConn(ok){
-  document.getElementById('connDot').classList.toggle('off', !ok);
-  document.getElementById('connText').textContent = ok
-    ? 'Conectado — sincronizado com o convite'
-    : 'Sem conexão com o servidor de confirmações. Tentando novamente...';
-}
-
-async function fetchData(){
-  const res = await fetch(apiUrl(), {cache:'no-store', headers:{'Cache-Control':'no-cache'}});
-  if(!res.ok) throw new Error('fail');
-  const json = await res.json();
-  json.confirmacoes = json.confirmacoes || [];
-  json.presentes = json.presentes || [];
-  return json;
-}
-async function saveData(data){
-  const res = await fetch(apiUrl(), {method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
-  if(!res.ok) throw new Error('fail');
-}
-
-async function loadAll(){
+async function fbGet(path){
   try{
-    const data = await fetchData();
-    setConn(true);
-    renderConfirmacoes(data.confirmacoes || []);
-    renderPresentes(data.presentes || []);
-  }catch(e){
-    setConn(false);
+    const res = await fetch(`${DB_URL}/${path}.json`, {cache:'no-store'});
+    if(!res.ok) throw new Error('fail');
+    return await res.json();
+  }catch(e){ return null; }
+}
+async function fbPost(path, data){
+  const res = await fetch(`${DB_URL}/${path}.json`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+  return await res.json();
+}
+async function fbPut(path, data){
+  await fetch(`${DB_URL}/${path}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+}
+async function fbPatch(path, data){
+  await fetch(`${DB_URL}/${path}.json`, {method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+}
+async function fbDelete(path){
+  await fetch(`${DB_URL}/${path}.json`, {method:'DELETE'});
+}
+
+/* ================== NAV ================== */
+function goTo(pageId){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('homeScreen').style.display = 'none';
+  document.getElementById(pageId).classList.add('active');
+  if(pageId === 'page-guests') loadGuests();
+  if(pageId === 'page-confirmed') loadConfirmed();
+  if(pageId === 'page-notgoing') loadNotGoing();
+  if(pageId === 'page-tamanhos'){ loadTamanhos(); loadTamanhosSophia(); }
+  if(pageId === 'page-gallery') loadGallery();
+  if(pageId === 'page-music') loadMusicStatus();
+  if(pageId === 'page-share') setupShare();
+}
+function goHome(){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('homeScreen').style.display = 'flex';
+}
+
+/* ================== INFO ================== */
+async function salvarInfo(){
+  const nome = document.getElementById('infoNome').value;
+  const data = document.getElementById('infoData').value;
+  const hora = document.getElementById('infoHora').value;
+  const local = document.getElementById('infoLocal').value;
+  const tema = document.getElementById('infoTema').value;
+  const maps = document.getElementById('infoMaps').value;
+  const idade = document.getElementById('infoIdade').value;
+  await fbPatch(`${EVENTO}`, {nome, data, hora, local, tema, mapsLink: maps, idade});
+  alert('✅ Informações salvas com sucesso!');
+}
+
+/* ================== GALERIA ================== */
+async function uploadFotos(){
+  const files = document.getElementById('fileInput').files;
+  for(let file of files){
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const fileName = `foto_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const base64 = e.target.result;
+      await fbPost(`${EVENTO}/galeria`, {url: base64, nome: file.name, data: new Date().toISOString()});
+      showSuccess('uploadSuccess');
+      loadGallery();
+    };
+    reader.readAsDataURL(file);
+  }
+  document.getElementById('fileInput').value = '';
+}
+
+async function loadGallery(){
+  const gals = await fbGet(`${EVENTO}/galeria`);
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+  if(!gals || Object.keys(gals).length === 0){
+    document.getElementById('galeryEmpty').style.display = 'block';
+    document.getElementById('galeryTitle').textContent = 'Fotos Atuais (0)';
+    return;
+  }
+  document.getElementById('galeryEmpty').style.display = 'none';
+  Object.entries(gals).forEach(([id, img]) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'gallery-item-wrap';
+    wrap.innerHTML = `
+      <img src="${img.url}" alt="${img.nome}">
+      <button class="gallery-delete" onclick="deletarFoto('${id}')">×</button>
+    `;
+    grid.appendChild(wrap);
+  });
+  document.getElementById('galeryTitle').textContent = `Fotos Atuais (${Object.keys(gals).length})`;
+}
+
+async function deletarFoto(id){
+  if(confirm('Tem certeza que deseja deletar esta foto?')){
+    await fbDelete(`${EVENTO}/galeria/${id}`);
+    loadGallery();
   }
 }
 
-function renderConfirmacoes(list){
-  const body = document.getElementById('confirmBody');
-  const empty = document.getElementById('confirmEmpty');
-  body.innerHTML = '';
-  if(list.length === 0){ empty.style.display='block'; }
-  else { empty.style.display='none'; }
+/* ================== MÚSICA ================== */
+async function uploadMusica(){
+  const file = document.getElementById('musicInput').files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const base64 = e.target.result;
+    await fbPatch(`${EVENTO}`, {musicaUrl: base64, musicaNome: file.name});
+    showSuccess('musicSuccess');
+    loadMusicStatus();
+  };
+  reader.readAsDataURL(file);
+  document.getElementById('musicInput').value = '';
+}
 
-  let sim=0, nao=0, pessoas=0;
-  list.slice().reverse().forEach(c=>{
-    if(c.status==='sim'){ sim++; pessoas += parseInt(c.acompanhantes||1); }
-    else nao++;
-    const tr = document.createElement('tr');
-    const dataFmt = c.data ? new Date(c.data).toLocaleString('pt-BR') : '-';
-    tr.innerHTML = `
-      <td><b>${escapeHtml(c.nome)}</b></td>
-      <td><span class="badge ${c.status}">${c.status==='sim' ? 'Vai' : 'Não vai'}</span></td>
-      <td>${c.status==='sim' ? (c.acompanhantes||1) : '-'}</td>
-      <td>${c.mensagem ? escapeHtml(c.mensagem) : '-'}</td>
-      <td>${dataFmt}</td>
-    `;
-    body.appendChild(tr);
+async function loadMusicStatus(){
+  const data = await fbGet(`${EVENTO}`);
+  const cur = document.getElementById('musicCurrent');
+  if(data && data.musicaNome){
+    cur.textContent = `🎵 ${data.musicaNome}`;
+  } else {
+    cur.textContent = 'Nenhuma música configurada';
+  }
+}
+
+async function removerMusica(){
+  if(confirm('Tem certeza que deseja remover a música?')){
+    await fbPatch(`${EVENTO}`, {musicaUrl: null, musicaNome: null});
+    loadMusicStatus();
+  }
+}
+
+/* ================== GUESTS ================== */
+async function loadGuests(){
+  const confs = await fbGet(`${EVENTO}/confirmacoes`);
+  if(!confs){
+    document.getElementById('guestsList').innerHTML = '<p class="empty">Nenhum convidado ainda</p>';
+    document.getElementById('statTotal').textContent = '0';
+    document.getElementById('statConfirmed').textContent = '0';
+    document.getElementById('statNot').textContent = '0';
+    return;
+  }
+  const entries = Object.values(confs);
+  const total = entries.length;
+  const confirmed = entries.filter(c => c.status === 'sim').length;
+  const notgoing = entries.filter(c => c.status === 'nao').length;
+  
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statConfirmed').textContent = confirmed;
+  document.getElementById('statNot').textContent = notgoing;
+  
+  let html = '';
+  entries.forEach(c => {
+    const tag = c.status === 'sim' ? '<span class="tag yes">✅</span>' : '<span class="tag no">❌</span>';
+    html += `<div class="list-item"><div>${c.nome} ${tag}</div><div style="font-size:11px;color:#6b5641;">${c.acompanhantes} pessoa(s)</div></div>`;
   });
-  document.getElementById('totalResp').textContent = list.length;
-  document.getElementById('totalSim').textContent = sim;
-  document.getElementById('totalNao').textContent = nao;
-  document.getElementById('totalPessoas').textContent = pessoas;
+  document.getElementById('guestsList').innerHTML = html || '<p class="empty">Nenhum convidado</p>';
 }
 
-function renderPresentes(list){
-  const wrap = document.getElementById('giftListPanel');
-  const empty = document.getElementById('giftEmpty');
-  wrap.innerHTML = '';
-  if(list.length === 0){ empty.style.display='block'; return; }
-  empty.style.display='none';
-  list.forEach(g=>{
-    const div = document.createElement('div');
-    div.className = 'gift-row' + (g.reservado ? ' taken' : '');
-    div.innerHTML = `
-      <div class="info">
-        <b>🎀 ${escapeHtml(g.nome)}</b>
-        <span>${g.link ? escapeHtml(g.link) : ''} ${g.reservado ? ' · Reservado por ' + escapeHtml(g.reservadoPor) : ''}</span>
+async function loadConfirmed(){
+  const confs = await fbGet(`${EVENTO}/confirmacoes`);
+  if(!confs){
+    document.getElementById('confirmedList').innerHTML = '<p class="empty">Nenhum convidado confirmado</p>';
+    return;
+  }
+  const entries = Object.values(confs).filter(c => c.status === 'sim');
+  let html = '';
+  entries.forEach(c => {
+    html += `<div class="list-item available">
+      <div>
+        <div style="font-weight:600;">${c.nome}</div>
+        <div style="font-size:12px;color:#6b5641;">${c.acompanhantes} pessoa(s)${c.mensagem ? ' • Com recado' : ''}</div>
+        ${c.mensagem ? `<div style="font-size:12px;margin-top:4px;color:#8a5a3b;font-style:italic;">"${c.mensagem}"</div>` : ''}
       </div>
-      <div class="actions">
-        ${g.reservado ? `<button class="btn-liberar" onclick="liberarGift('${g.id}')">Liberar</button>` : ''}
-        <button class="btn-del" onclick="delGift('${g.id}')">Remover</button>
+    </div>`;
+  });
+  document.getElementById('confirmedList').innerHTML = html || '<p class="empty">Nenhum confirmado</p>';
+}
+
+async function loadNotGoing(){
+  const confs = await fbGet(`${EVENTO}/confirmacoes`);
+  if(!confs){
+    document.getElementById('notgoingList').innerHTML = '<p class="empty">Nenhum convidado recusado</p>';
+    return;
+  }
+  const entries = Object.values(confs).filter(c => c.status === 'nao');
+  let html = '';
+  entries.forEach(c => {
+    html += `<div class="list-item taken">
+      <div>
+        <div style="font-weight:600;">${c.nome}</div>
+        ${c.mensagem ? `<div style="font-size:12px;margin-top:4px;color:#8a5a3b;font-style:italic;">"${c.mensagem}"</div>` : ''}
       </div>
-    `;
-    wrap.appendChild(div);
+    </div>`;
+  });
+  document.getElementById('notgoingList').innerHTML = html || '<p class="empty">Nenhum recusou</p>';
+}
+
+async function loadTamanhos(){
+  const confs = await fbGet(`${EVENTO}/confirmacoes`);
+  if(!confs){
+    document.getElementById('tamanhosList').innerHTML = '<p class="empty">Nenhum tamanho registrado</p>';
+    return;
+  }
+  const entries = Object.values(confs).filter(c => c.tamanhoCamisa || c.tamanhoCalca || c.tamanhoSandalia || c.tamanhoChapeu);
+  let html = '';
+  entries.forEach(c => {
+    const tamanhos = [];
+    if(c.tamanhoCamisa) tamanhos.push(`👕 Blusa: ${c.tamanhoCamisa}`);
+    if(c.tamanhoCalca) tamanhos.push(`👖 Calça: ${c.tamanhoCalca}`);
+    if(c.tamanhoSandalia) tamanhos.push(`👞 Sandália: ${c.tamanhoSandalia}`);
+    if(c.tamanhoChapeu) tamanhos.push(`🧢 Chapéu: ${c.tamanhoChapeu}`);
+    html += `<div class="list-item">
+      <div>
+        <div style="font-weight:600;margin-bottom:4px;">${c.nome}</div>
+        <div style="font-size:12px;color:#6b5641;">${tamanhos.join(' • ')}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('tamanhosList').innerHTML = html || '<p class="empty">Nenhum tamanho registrado</p>';
+}
+
+/* ================== SHARE ================== */
+function copiarLink(){
+  const link = document.getElementById('linkConvite').textContent;
+  navigator.clipboard.writeText(link).then(() => alert('✅ Link copiado!'));
+}
+function compartilharWhatsApp(){
+  const link = document.getElementById('linkConvite').textContent;
+  const txt = encodeURIComponent(`🎉 Você recebeu um convite especial para a festa da Sophia!\n\n${link}`);
+  window.open(`https://wa.me/?text=${txt}`, '_blank');
+}
+
+/* ================== ADMIN - RESETAR CONVIDADOS ================== */
+function confirmarZerarConvidados(){
+  document.getElementById('confirmModal').classList.add('show');
+}
+
+function cancelarZerar(){
+  document.getElementById('confirmModal').classList.remove('show');
+}
+
+async function executarZerarConvidados(){
+  document.getElementById('confirmModal').classList.remove('show');
+  
+  try {
+    await fbDelete(`${EVENTO}/confirmacoes`);
+    alert('✅ Todos os convidados foram zerados com sucesso!');
+    loadGuests();
+    loadConfirmed();
+    loadNotGoing();
+    loadTamanhos();
+  } catch(e){
+    alert('❌ Erro ao zerar convidados. Tente novamente.');
+  }
+}
+
+function recarregarDadosAdmin(){
+  loadGuests();
+  loadConfirmed();
+  loadNotGoing();
+  loadTamanhos();
+  alert('🔄 Dados recarregados!');
+}
+
+/* ================== UTILS ================== */
+function showSuccess(id){
+  const el = document.getElementById(id);
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+
+/* ================== TAMANHOS DA SOPHIA ================== */
+async function salvarTamanhosSophia(){
+  const data = {};
+  const fields = {blusa:'tBlusa',calca:'tCalca',vestido:'tVestido',sandalia:'tSandalia',tenis:'tTenis',chapeu:'tChapeu',observacoes:'tObs'};
+  Object.entries(fields).forEach(([key,id])=>{
+    const val = document.getElementById(id).value.trim();
+    if(val) data[key] = val;
+  });
+  await fbPut(`${EVENTO}/tamanhosSophia`, Object.keys(data).length ? data : null);
+  showSuccess('tamanhosSuccess');
+}
+
+async function loadTamanhosSophia(){
+  const data = await fbGet(`${EVENTO}/tamanhosSophia`);
+  if(!data) return;
+  const map = {blusa:'tBlusa',calca:'tCalca',vestido:'tVestido',sandalia:'tSandalia',tenis:'tTenis',chapeu:'tChapeu',observacoes:'tObs'};
+  Object.entries(map).forEach(([key,id])=>{
+    if(data[key]) document.getElementById(id).value = data[key];
   });
 }
 
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+function setupShare(){
+  document.getElementById('linkConvite').textContent = 'https://convites-lenny.github.io/sophia/';
 }
 
-async function addGift(){
-  const nome = document.getElementById('giftNome').value.trim();
-  const link = document.getElementById('giftLink').value.trim();
-  if(!nome){ alert('Digite o nome do presente.'); return; }
-  try{
-    const data = await fetchData();
-    data.presentes = data.presentes || [];
-    data.presentes.push({id: Date.now(), nome, link, reservado:false, reservadoPor:''});
-    await saveData(data);
-    document.getElementById('giftNome').value='';
-    document.getElementById('giftLink').value='';
-    loadAll();
-  }catch(e){ alert('Não foi possível salvar agora. Tente novamente.'); }
-}
-async function delGift(id){
-  if(!confirm('Remover este item da lista?')) return;
-  try{
-    const data = await fetchData();
-    data.presentes = (data.presentes||[]).filter(g=>String(g.id)!==String(id));
-    await saveData(data);
-    loadAll();
-  }catch(e){ alert('Não foi possível remover agora. Tente novamente.'); }
-}
-async function liberarGift(id){
-  try{
-    const data = await fetchData();
-    const item = (data.presentes||[]).find(g=>String(g.id)===String(id));
-    if(item){ item.reservado=false; item.reservadoPor=''; }
-    await saveData(data);
-    loadAll();
-  }catch(e){ alert('Não foi possível atualizar agora. Tente novamente.'); }
-}
+/* DRAG & DROP */
+['uploadArea','musicUploadArea'].forEach(id => {
+  const el = document.getElementById(id);
+  ['dragenter','dragover','dragleave','drop'].forEach(e => el.addEventListener(e, p => p.preventDefault()));
+  el.addEventListener('dragenter', () => el.classList.add('drag'));
+  el.addEventListener('dragleave', () => el.classList.remove('drag'));
+  el.addEventListener('drop', (e) => {
+    el.classList.remove('drag');
+    if(id === 'uploadArea') document.getElementById('fileInput').files = e.dataTransfer.files;
+    if(id === 'musicUploadArea') document.getElementById('musicInput').files = e.dataTransfer.files;
+  });
+});
 
-loadAll();
-setInterval(loadAll, 10000);
+// Initial load
+loadGallery();
+loadMusicStatus();
 </script>
 </body>
 </html>
