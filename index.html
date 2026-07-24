@@ -267,7 +267,7 @@
 <button id="musicToggle" onclick="toggleMusic()">🔊</button>
 
 <!-- INTRO CINEMATIC -->
-<div id="introScreen">
+<div id="introScreen" onclick="tryUnlockMusic()">
   <div class="intro-dust"></div>
   <div class="intro-txt" id="introTxt">Você acabou de receber<br>um convite muito especial…</div>
   <button class="intro-skip" onclick="skipIntro()">pular ▶</button>
@@ -352,10 +352,23 @@
       <div style="position:absolute;bottom:0;left:-100%;width:200%;height:5px;background:repeating-linear-gradient(90deg, transparent 0%, var(--rose) 20%, transparent 40%, var(--gold-light) 60%, var(--rose) 80%, transparent 100%);background-size:60px 5px;animation:waveMoveBottom 2s linear infinite;"></div>
     </div>
     
-  <div style="background:#fbf3e2;border-radius:12px;padding:12px;margin:0 16px 16px;border-left:4px solid var(--gold-light);display:inline-block;width:calc(100% - 32px);">
-    <div style="font-size:11px;color:#6b5641;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">👕 Tamanhos Sophia</div>
-    <div id="tamanhosInfo" style="font-size:12px;color:#8a5a3b;line-height:1.6;">
-      <p style="margin:0;text-align:center;color:#999;">Carregando...</p>
+  <button onclick="abrirTamanhos()" style="display:flex;align-items:center;gap:12px;width:calc(100% - 32px);margin:0 16px 16px;padding:14px 18px;background:linear-gradient(160deg,#fbf3e2,#fff8ed);border:2px solid var(--gold-light);border-radius:14px;cursor:pointer;font-family:'Josefin Sans',sans-serif;font-weight:700;color:var(--leather-dark);font-size:14px;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .3s;">
+    <span style="font-size:28px;">🎁</span>
+    <div>
+      <div style="font-size:14px;">Tamanhos da Sophia</div>
+      <div style="font-size:11px;font-weight:500;color:#8a5a3b;margin-top:2px;">blusa · calça · vestido · sandália · chapéu</div>
+    </div>
+    <span style="margin-left:auto;font-size:18px;opacity:.4;">▶</span>
+  </button>
+  <div id="tamanhosModal" style="display:none;position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.82);align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);">
+    <div style="background:var(--cream2);border-radius:18px;padding:24px;max-width:360px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.6);max-height:88vh;overflow-y:auto;">
+      <div style="text-align:center;margin-bottom:18px;">
+        <div style="font-family:'Rye',serif;color:var(--leather-dark);font-size:20px;letter-spacing:.5px;">🎁 Tamanhos da Sophia</div>
+        <div style="font-size:12px;color:#8a5a3b;margin-top:4px;">Sophia Emanuelly · 10 anos 🤠</div>
+        <div style="font-size:11px;color:#bbb;margin-top:2px;">Use como referência para presentear</div>
+      </div>
+      <div id="tamanhosGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;"></div>
+      <button onclick="fecharTamanhos()" style="width:100%;padding:13px;border:none;border-radius:25px;background:linear-gradient(160deg,var(--gold-light),var(--gold));color:#3c2416;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 14px rgba(169,118,45,.4);">✨ Fechar</button>
     </div>
   </div>
 
@@ -408,9 +421,11 @@
   </button>
 </div>
 
+<style>
 @keyframes fadeInOverlay{from{opacity:0;backdrop-filter:blur(0);}to{opacity:1;backdrop-filter:blur(1px);}}
 @keyframes avatarBounce{0%{opacity:0;transform:scale(0.6);}100%{opacity:1;transform:scale(1);}}
 @keyframes textFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+</style>
 
 <script>
 /* ================== FIREBASE (Realtime Database via REST) ================== */
@@ -447,8 +462,8 @@ function openEnvelope(){
   env.classList.add('open');
   launchConfetti();
   const music = document.getElementById('bgMusic');
-  music.volume = 0;
-  music.play().then(()=>{ fadeMusicTo(0.4, 2400); }).catch(()=>{});
+  if(music.paused){ music.volume=0; music.play().then(()=>{ fadeMusicTo(0.4,2400); }).catch(()=>{}); }
+  else { fadeMusicTo(0.4,1200); }
   document.getElementById('musicToggle').textContent = '🔊';
   setTimeout(()=>{
     document.getElementById('envelopeScreen').classList.add('hidden');
@@ -636,24 +651,51 @@ function launchConfetti(){
 
 /* Load gallery from Firebase */
 
+/* ================== MUSIC UNLOCK ================== */
+let musicStarted = false;
+function tryUnlockMusic(){
+  if(musicStarted) return;
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.35;
+  music.play().then(()=>{ musicStarted=true; document.getElementById('musicToggle').textContent='🔊'; }).catch(()=>{});
+}
+
+/* ================== TAMANHOS MODAL ================== */
+const TAMANHO_ITEMS = [
+  {key:'blusa',   label:'Blusa',       emoji:'👕'},
+  {key:'calca',   label:'Calça/Short', emoji:'👖'},
+  {key:'vestido', label:'Vestido',      emoji:'👗'},
+  {key:'sandalia',label:'Sandália',     emoji:'👡'},
+  {key:'tenis',   label:'Tênis',        emoji:'👟'},
+  {key:'chapeu',  label:'Chapéu',       emoji:'🤠'},
+];
+
+function abrirTamanhos(){
+  document.getElementById('tamanhosModal').style.display='flex';
+}
+function fecharTamanhos(){
+  document.getElementById('tamanhosModal').style.display='none';
+}
+
 async function carregarTamanhosInfo(){
   const data = await fbGet(`${EVENTO}/tamanhosSophia`);
-  const infoDiv = document.getElementById('tamanhosInfo');
-  
-  if(!data || !data.camisa){
-    infoDiv.innerHTML = '<p style="margin:0;text-align:center;font-size:11px;color:#999;">Não configurado</p>';
-    return;
-  }
-  
+  const grid = document.getElementById('tamanhosGrid');
   let html = '';
-  if(data.camisa) html += '<div>👕 ' + data.camisa + '</div>';
-  if(data.calca) html += '<div>👖 ' + data.calca + '</div>';
-  if(data.sandalia) html += '<div>👞 ' + data.sandalia + '</div>';
-  if(data.chapeu) html += '<div>🧢 ' + data.chapeu + '</div>';
-  if(data.observacoes){
-    html += '<div style="margin-top:6px;padding-top:6px;border-top:1px solid #e3d3ba;font-size:11px;">📝 ' + data.observacoes + '</div>';
+  TAMANHO_ITEMS.forEach(item => {
+    const val = data && data[item.key] ? data[item.key] : null;
+    html += `<div style="background:${val?'#fff':'#f5ece0'};border-radius:12px;padding:12px;text-align:center;border:1.5px dashed ${val?'var(--gold-light)':'#d4c4a8'};">
+      <div style="font-size:26px;margin-bottom:4px;">${item.emoji}</div>
+      <div style="font-size:10px;color:#6b5641;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">${item.label}</div>
+      <div style="font-size:${val?'20px':'14px'};font-weight:700;color:${val?'var(--leather-dark)':'#ccc'};margin-top:3px;">${val||'—'}</div>
+    </div>`;
+  });
+  if(data && data.observacoes){
+    html += `<div style="grid-column:1/-1;background:#fff8ed;border-radius:10px;padding:10px;border-left:3px solid var(--gold-light);font-size:12px;color:#6b5641;">📝 ${data.observacoes}</div>`;
   }
-  infoDiv.innerHTML = html || '<p style="margin:0;text-align:center;font-size:11px;color:#999;">Sem dados</p>';
+  if(!html){
+    html = '<div style="grid-column:1/-1;text-align:center;color:#bbb;padding:20px;font-size:13px;">Tamanhos ainda não configurados pelos pais.</div>';
+  }
+  grid.innerHTML = html;
 }
 
 async function loadGalleryFromDB(){
